@@ -6,11 +6,10 @@ phases:
       - echo Installing app dependencies...
       - curl -LO https://dl.k8s.io/release/v1.27.2/bin/linux/amd64/kubectl   
       - chmod +x ./kubectl
-      - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH="$HOME/bin:$PATH"
+      - mkdir -p $HOME/bin && mv ./kubectl $HOME/bin/kubectl && export PATH="$HOME/bin:$PATH"
       - echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
       - source ~/.bashrc
-      - echo "verify kubectl path:"
-      - which kubectl 
+      - echo "kubectl path: $(which kubectl)"
       - kubectl version --client --short
     
   pre_build:
